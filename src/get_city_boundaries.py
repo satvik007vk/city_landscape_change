@@ -50,5 +50,7 @@ def get_city_boundary(city: City,  time="2026-06-01T00:00:00Z", save_file: bool 
 
 
 if __name__ == "__main__":
-    city_boundary_gdf = get_city_boundary(city=Cities.PARIS.value, save_file=True)
+    for city in Cities:
+        city_boundary_gdf = get_city_boundary(city=city.value, save_file=False)
+        print(city.value.name, len(city_boundary_gdf))
 
