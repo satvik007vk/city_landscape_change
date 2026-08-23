@@ -1,8 +1,8 @@
 import ee
-
-from aoi import load_city_aoi
 from gee_auth import initialize_ee
 from get_city_boundaries import Cities
+
+from aoi import load_city_aoi
 from ndvi_ndwi import add_indices
 
 CLOUD_PROB_THRESHOLD = 20  # MSK_CLDPRB units: percent (0-100)

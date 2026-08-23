@@ -2,10 +2,9 @@ from pathlib import Path
 
 import ee
 import geopandas as gpd
-from shapely.geometry import mapping
-
 from gee_auth import initialize_ee
 from get_city_boundaries import Cities
+from shapely.geometry import mapping
 
 ROOT_DIR = Path(__file__).parent.parent
 

@@ -1,8 +1,8 @@
 import ee
 import pytest
 
-from src.gee_auth import initialize_ee
 from src.ndvi_ndwi import add_indices, add_ndvi, add_ndwi
+from src.preprocess.gee_auth import initialize_ee
 
 
 @pytest.fixture(scope="module", autouse=True)
