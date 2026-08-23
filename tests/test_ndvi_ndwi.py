@@ -22,7 +22,7 @@ def _pixel_value(image: ee.Image, band: str) -> float:
     )
 
 
-def test_add_ndvi_adds_band_with_expected_value():
+def test_add_ndvi():
     image = ee.Image.constant([0.5, 0.1]).rename(["B8", "B4"])
     result = add_ndvi(image)
 
@@ -30,7 +30,7 @@ def test_add_ndvi_adds_band_with_expected_value():
     assert _pixel_value(result, "NDVI") == pytest.approx((0.5 - 0.1) / (0.5 + 0.1))
 
 
-def test_add_ndwi_adds_band_with_expected_value():
+def test_add_ndwi():
     image = ee.Image.constant([0.3, 0.5]).rename(["B3", "B8"])
     result = add_ndwi(image)
 
