@@ -21,13 +21,19 @@ def combine_yearly_composites(
     return ee.ImageCollection(images)
 
 
-def get_one_year_composite(aoi: ee.Geometry, year: int) -> ee.Image:
-    start = ee.Date.fromYMD(year, 1, 1)
-    end = start.advance(1, "year")
+def get_one_year_composite(
+    aoi: ee.Geometry,
+    year: int,
+    start_month: int = 1,
+    end_month: int = 12,
+) -> ee.Image:
+    start = ee.Date.fromYMD(year, start_month, 1)
+    end = ee.Date.fromYMD(year, end_month, 1).advance(1, "month")
     collection = (
         ee.ImageCollection(S2_COLLECTION).filterBounds(aoi).filterDate(start, end)
     )
-    masked = collection.map(mask_s2_clouds)
+    band_order = collection.first().bandNames()
+    masked = collection.map(mask_s2_clouds).map(lambda image: image.select(band_order))
     return masked.median().clip(aoi).set("year", year, "image_count", collection.size())
 
 
