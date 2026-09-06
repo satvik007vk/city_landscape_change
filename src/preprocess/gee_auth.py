@@ -3,7 +3,7 @@ from pathlib import Path
 import ee
 from dotenv import dotenv_values
 
-ROOT_DIR = Path(__file__).parent.parent
+ROOT_DIR = Path(__file__).parent.parent.parent
 config = dotenv_values(ROOT_DIR / ".env")
 PROJECT_ID = config["GEE_PROJECT_ID"]
 

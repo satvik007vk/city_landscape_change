@@ -9,7 +9,7 @@ import requests
 from dotenv import dotenv_values
 from shapely import from_wkb
 
-ROOT_DIR = Path(__file__).parent.parent
+ROOT_DIR = Path(__file__).parent.parent.parent
 config = dotenv_values(ROOT_DIR / ".env")
 KEY = config["OHSOME_API_KEY"]
 OHSOME_V2_URL = config["OHSOME_V2_URL"]

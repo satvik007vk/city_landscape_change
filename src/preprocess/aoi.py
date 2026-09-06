@@ -4,10 +4,10 @@ import ee
 import geopandas as gpd
 from shapely.geometry import mapping
 
-from gee_auth import initialize_ee
-from get_city_boundaries import Cities
+from src.preprocess.gee_auth import initialize_ee
+from src.preprocess.get_city_boundaries import Cities
 
-ROOT_DIR = Path(__file__).parent.parent
+ROOT_DIR = Path(__file__).parent.parent.parent
 
 
 def load_city_aoi(city_name: str) -> ee.Geometry:

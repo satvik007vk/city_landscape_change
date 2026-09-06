@@ -1,6 +1,6 @@
 import pytest
 
-from src.get_city_boundaries import City, get_city_boundary
+from src.preprocess.get_city_boundaries import City, get_city_boundary
 
 
 @pytest.mark.vcr()
