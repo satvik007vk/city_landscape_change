@@ -2,7 +2,7 @@ import ee
 
 
 def add_indices(image: ee.Image) -> ee.Image:
-    return add_ndwi(add_ndvi(image))
+    return add_ndbi(add_ndwi(add_ndvi(image)))
 
 
 def add_ndwi(image: ee.Image) -> ee.Image:
@@ -13,3 +13,8 @@ def add_ndwi(image: ee.Image) -> ee.Image:
 def add_ndvi(image: ee.Image) -> ee.Image:
     ndvi = image.normalizedDifference(["B8", "B4"]).rename("NDVI")
     return image.addBands(ndvi)
+
+
+def add_ndbi(image: ee.Image) -> ee.Image:
+    ndbi = image.normalizedDifference(["B11", "B8"]).rename("NDBI")
+    return image.addBands(ndbi)

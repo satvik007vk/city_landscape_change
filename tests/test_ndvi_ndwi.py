@@ -1,7 +1,7 @@
 import ee
 import pytest
 
-from src.ndvi_ndwi import add_indices, add_ndvi, add_ndwi
+from src.ndvi_ndwi import add_indices, add_ndbi, add_ndvi, add_ndwi
 from src.preprocess.gee_auth import initialize_ee
 
 
@@ -38,8 +38,16 @@ def test_add_ndwi():
     assert _pixel_value(result, "NDWI") == pytest.approx((0.3 - 0.5) / (0.3 + 0.5))
 
 
-def test_add_indices_adds_both_bands():
-    image = ee.Image.constant([0.5, 0.1, 0.3]).rename(["B8", "B4", "B3"])
+def test_add_ndbi():
+    image = ee.Image.constant([0.4, 0.2]).rename(["B11", "B8"])
+    result = add_ndbi(image)
+
+    assert "NDBI" in result.bandNames().getInfo()
+    assert _pixel_value(result, "NDBI") == pytest.approx((0.4 - 0.2) / (0.4 + 0.2))
+
+
+def test_add_indices_adds_all_bands():
+    image = ee.Image.constant([0.5, 0.1, 0.3, 0.4]).rename(["B8", "B4", "B3", "B11"])
     result = add_indices(image)
 
-    assert {"NDVI", "NDWI"}.issubset(result.bandNames().getInfo())
+    assert {"NDVI", "NDWI", "NDBI"}.issubset(result.bandNames().getInfo())
