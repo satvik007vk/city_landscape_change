@@ -57,6 +57,7 @@ def get_one_year_lst_composite(
     end_month: int = 12,
     source: str = "landsat",
 ) -> ee.Image:
+    """source: "landsat" or "modis"."""
     if source == "landsat":
         return _get_one_year_lst_composite_landsat(aoi, year, start_month, end_month)
     if source == "modis":
